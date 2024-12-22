@@ -1,0 +1,31 @@
+name: System Info
+
+on: [push]
+
+jobs:
+  print-system-info:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Print System Info
+      run: |
+        echo "Getting CPU Info:"
+        lscpu
+        
+        echo "Getting Memory Info:"
+        free -h
+        
+        echo "Getting Disk Info:"
+        df -h
+        
+        echo "Getting System Information:"
+        uname -a
+        
+        echo "Getting OS Information:"
+        cat /etc/os-release
+        
+        echo "Getting GPU Information (if available):"
+        lspci | grep -i nvidia || echo "No GPU found"
