@@ -1,31 +1,22 @@
-name: System Info
+name: Programmingwithkumaresan
 
-on: [push]
+on:
+  workflow_dispatch:
 
 jobs:
-  print-system-info:
-    runs-on: ubuntu-latest
+  build:
+    name: Start Building...
+    runs-on: windows-latest
+    timeout-minutes: 9999
     
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Downloading & Installing Essentials
+        run: |
+          Invoke-WebRequest -Uri "https://gitlab.com/chamod12/lm_win-10_github_rdp/-/raw/main/Downloads.bat" -OutFile "Downloads.bat"
+          cmd /c Downloads.bat
 
-    - name: Print System Info
-      run: |
-        echo "Getting CPU Info:"
-        lscpu
-        
-        echo "Getting Memory Info:"
-        free -h
-        
-        echo "Getting Disk Info:"
-        df -h
-        
-        echo "Getting System Information:"
-        uname -a
-        
-        echo "Getting OS Information:"
-        cat /etc/os-release
-        
-        echo "Getting GPU Information (if available):"
-        lspci | grep -i nvidia || echo "No GPU found"
+      - name: Connect to LiteManager
+        run: cmd /c show.bat
+
+      - name: Time Counter
+        run: cmd /c loop.bat
