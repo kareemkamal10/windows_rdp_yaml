@@ -1,0 +1,37 @@
+name: Honeygain Docker Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-run-docker:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # الخطوة الأولى: التحقق من الكود المصدر
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    # الخطوة الثانية: تثبيت Docker
+    - name: Install Docker
+      run: |
+        sudo apt update
+        sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+        sudo apt update
+        sudo apt install -y docker-ce
+
+    # الخطوة الثالثة: سحب صورة Docker الخاصة بـ Honeygain
+    - name: Pull Honeygain Docker image
+      run: docker pull honeygain/honeygain
+
+    # الخطوة الرابعة: تشغيل الأمر -tou-get
+    - name: Run Honeygain -tou-get
+      run: docker run honeygain/honeygain -tou-get
+
+    # الخطوة الخامسة: قبول الشروط وتحديد الحساب
+    - name: Run Honeygain with account details
+      run: |
+        docker run honeygain/honeygain -tou-accept -email kareemkamal500@gmail.com
+ -pass Kemo@King#200211% -device test1
