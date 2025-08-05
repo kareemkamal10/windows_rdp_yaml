@@ -16,10 +16,5 @@ jobs:
       - name: Log In To AnyDesk
         run: cmd /c show.bat
 
-      - name: Keep Alive (Infinite Loop)
-        run: |
-          while ($true) {
-            Write-Output "Still running at $(Get-Date)"
-            Start-Sleep -Seconds 60
-          }
-        shell: pwsh
+      - name: Time Counter
+        run: python time.py
