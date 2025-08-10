@@ -15,17 +15,6 @@ C:\Users\Public\Desktop\Winrar.exe /S
 del C:\Users\Public\Desktop\Winrar.exe
 del /f "C:\Users\Public\Desktop\Epic Games Launcher.lnk" > errormsg.txt 2>&1
 del /f "C:\Users\Public\Desktop\Unity Hub.lnk" > errormsg.txt 2>&1
-
-REM تثبيت Chocolatey
-@powershell -NoProfile -ExecutionPolicy Bypass -Command ^
-"Set-ExecutionPolicy Bypass -Scope Process -Force; ^
-[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; ^
-iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
-set "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
-
-REM تثبيت SoftEther VPN Client
-choco install softether-vpn-client -y
-
 set password=@#Disala123456
 powershell -Command "Set-LocalUser -Name 'runneradmin' -Password (ConvertTo-SecureString -AsPlainText '%password%' -Force)"
 start "" "rustdesk.exe"
